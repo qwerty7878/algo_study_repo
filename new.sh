@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# 사용법: ./new.sh <문제번호> <제목> [레벨=2]
+# 사용법: ./new.sh <문제번호> <제목> [레벨]  (레벨 생략 시 물어봄, 기본값은 마지막에 쓴 레벨)
 # 예시:   ./new.sh 1204 최빈수구하기
 set -e
 cd "$(dirname "$0")"
 
 if [ $# -lt 2 ]; then
-  echo "사용법: ./new.sh <문제번호> <제목> [레벨=2]"
+  echo "사용법: ./new.sh <문제번호> <제목> [레벨]"
   exit 1
 fi
 
@@ -17,7 +17,16 @@ if [ ! -f "$CONF" ]; then
 fi
 source "$CONF"
 
-NUM=$1; TITLE=$2; LV=${3:-2}
+NUM=$1; TITLE=$2
+LV=${3:-}
+if [ -z "$LV" ]; then
+  LAST=${LV_LAST:-2}
+  read -rp "레벨 [$LAST]: " LV
+  LV=${LV:-$LAST}
+fi
+# 마지막에 쓴 레벨을 기억해서 다음번 기본값으로 사용
+grep -v '^LV_LAST=' "$CONF" > "$CONF.tmp" || true
+echo "LV_LAST=$LV" >> "$CONF.tmp" && mv "$CONF.tmp" "$CONF"
 DIR="$MY_DIR/lv$LV"
 FILE="$DIR/${NUM}_${TITLE}.$EXT"
 
