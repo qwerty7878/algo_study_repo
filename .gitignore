@@ -1,0 +1,10 @@
+.study.conf
+.DS_Store
+__pycache__/
+.idea/
+.vscode/
+*.class
+out/
+
+# 스터디와 무관한 폴더
+day_0929/
