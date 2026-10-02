@@ -1,4 +1,5 @@
 // 접근: 2, 3, 5, 7, 11 순서로 N을 나눌 수 있는 만큼 나누며 횟수를 센다.
+// 링크: https://swexpertacademy.com/main/code/problem/problemList.do (번호 1945 검색)
 // 시간복잡도: O(log N)
 // 메모: 지수 a~e는 각 소수가 곱해진 횟수. 출력은 공백으로 구분.
 
