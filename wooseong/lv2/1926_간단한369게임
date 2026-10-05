@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+class Solution
+{
+	public static void main(String args[]) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 1; i <= N; i++)
+		{
+			int clap = 0;
+			int x = i;
+			while (x > 0)
+			{
+				int d = x % 10;
+				if (d == 3 || d == 6 || d == 9) clap++;
+				x /= 10;
+			}
+
+			if (clap == 0) sb.append(i);
+			else for (int k = 0; k < clap; k++) sb.append('-');
+
+			if (i < N) sb.append(' ');
+		}
+
+		System.out.println(sb);
+	}
+}
